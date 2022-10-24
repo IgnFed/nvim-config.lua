@@ -5,6 +5,7 @@ local o = vim.opt -- not `vim.o`!
 local wo = vim.wo
 
 
+g.mapleader = ","
 vim.g.syntax = true
 
 vim.g.mouse = "a"

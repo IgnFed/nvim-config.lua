@@ -12,3 +12,5 @@ key({"i", "n"}, "<S-q>", "<ESC>q<CR>", {})
 key({"i", "n"}, "<S-Right>", "<ESC>:vsplit<CR>",{})
 key({"i", "n"}, "<S-Up>", "<ESC>:split<CR>",{})
 key({"i", "n"}, "<S-Down>", "<ESC>:split<CR>",{})
+key({'i', 'n'}, "<A-m>", "<cmd>NvimTreeToggle<CR>")
+

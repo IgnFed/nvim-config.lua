@@ -17,9 +17,11 @@ saga.init_lsp_saga({
 
 key("n", "fd", "<cmd>Lspsaga lsp_finder<CR>",shared_opts)
 key({"i", "n", "v"}, "<F2>", "<cmd>Lspsaga rename<CR>", shared_opts)
-key("n", "<C-b>", "<cmd>Lspsaga hover_doc<CR>",shared_opts)
+key({"n", "i"}, "<Leader><Leader>", "<cmd>Lspsaga hover_doc<CR>",{remap=true})
 key({"i", "n"}, "<C-o>", "<cmd>Lspsaga open_floaterm<CR>", shared_opts)
 key("t", "<C-o>", "<cmd>Lspsaga close_floaterm<CR>", shared_opts)
-key({"i", "n"}, "<C-x>", "<cmd>LSoutlineToggle<CR>")
-
+key({"i", "n"}, "<C-x>", "<cmd>LSoutlineToggle<CR>", shared_opts)
+key("n", "<Leader>c", "<cmd>Lspsaga code_action<CR>", shared_opts)
+key("n", "<Leader>C", "<cmd>Lspsaga code_action<CR>", shared_opts)
+key("n", "gd", "<cmd>Lspsaga peek_definition<CR>", shared_opts)
 
