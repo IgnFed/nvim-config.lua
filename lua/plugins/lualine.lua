@@ -1,13 +1,15 @@
 local lualine = require("lualine")
 
-local custom_gruvbox = require'lualine.themes.codedark'
-
 lualine.setup {
   options = { 
-    theme  = custom_gruvbox,
+    theme  = "iceberg_dark",
   },
   sections = {
-    lualine_c = { "os.date('🕐%a%d_%b')" },
-    lualine_x = {"encoding", "filetype" ,"fileformat", "filesize"}
+    lualine_a = { "mode" },
+    lualine_b = { "branch", "diagnostics" },
+    lualine_c = {"diff"},
+    lualine_x = { "windows", "fileformat" },
+    lualine_y = { "encoding" },
+    lualine_z = { "location" }
   },
 }

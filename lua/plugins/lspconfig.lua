@@ -10,26 +10,41 @@ local on_attach = function(client, bufnr)
 end
 
 -- this part is telling Neovim to use the lsp server
-local servers = { 'tsserver', "sumneko_lua", "jsonls", "cssls", "html", "tailwindcss", "cssmodules_ls" }
-
-local sumneko_diagnostic = {
-  globals = {"vim"}
-}
+local servers = { 'tsserver', "jsonls", "cssls", "html", "tailwindcss", "cssmodules_ls" }
 
 for _, lsp in pairs(servers) do
-    local diagnostic = {}
-    if(lsp == "sumneko_lua") then
-      diagnostic = sumneko_diagnostic
-    end
-    lspconfig[lsp].setup {
+   lspconfig[lsp].setup {
         on_attach = on_attach,
         flags = {
           debounce_text_changes = 150,
         },
         detached = false,
-        diagnostic = diagnostic
-      }
+    }
 end
+
+lspconfig.sumneko_lua.setup{
+  on_attach = on_attach,
+  flags = {
+    debounce_text_changes = 150,
+  },
+  detached = false,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = {"vim"}
+      },
+      runtime = {
+        version = "LuaJIT"
+      },
+      workspace = {
+        library = {
+          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
+        }
+      }
+    }
+  }
+}
 
 
 
