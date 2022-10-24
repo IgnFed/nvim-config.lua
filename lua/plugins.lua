@@ -53,6 +53,14 @@ return require('packer').startup(function(use)
     "rcarriga/nvim-notify",
     }
   })
+  use({
+    "jose-elias-alvarez/null-ls.nvim",
+    requires = { "nvim-lua/plenary.nvim" },
+  })
+  -- use { 'mhartington/formatter.nvim' }
+  use {
+    "windwp/nvim-autopairs",
+  }
 
   if packer_bootstrap then
     require('packer').sync()
