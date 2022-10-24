@@ -1,6 +1,4 @@
 -- local Plug = vim.fn["plug#"]
-local call = vim.call
-local cmd = vim.cmd
 
 local ensure_packer = function()
   local fn = vim.fn
@@ -16,7 +14,7 @@ local packer_bootstrap = ensure_packer()
 
 
 return require('packer').startup(function(use)
-  
+
   use 'wbthomason/packer.nvim'
   use 'neovim/nvim-lspconfig'
   use 'williamboman/mason.nvim'
@@ -38,15 +36,27 @@ return require('packer').startup(function(use)
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
     tag = 'nightly' -- optional, updated every week. (see issue #1193)
-  }  
+  }
   use 'hrsh7th/cmp-nvim-lsp-signature-help'
   use {'nvim-lualine/lualine.nvim', requires={'kyazdani42/nvim-web-devicons', opt = true}}
   use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'kyazdani42/nvim-web-devicons'}
+  use "terrortylor/nvim-comment"
+  use({
+  "folke/noice.nvim",
+  event = "VimEnter",
+  requires = {
+    -- if you lazy-load any plugin below, make sure to add proper `module="..."` entries
+    "MunifTanjim/nui.nvim",
+    -- OPTIONAL:
+    --   `nvim-notify` is only needed, if you want to use the notification view.
+    --   If not available, we use `mini` as the fallback
+    "rcarriga/nvim-notify",
+    }
+  })
 
   if packer_bootstrap then
     require('packer').sync()
   end
-
 
 end)
 
