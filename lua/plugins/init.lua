@@ -8,5 +8,6 @@ require("plugins.bufferline")
 require("plugins.nvm-comment")
 require("plugins.autopairs")
 require("plugins.null-lsp")
+require("plugins.treesitter")
 --require("plugins.nvim-telescope")
 
