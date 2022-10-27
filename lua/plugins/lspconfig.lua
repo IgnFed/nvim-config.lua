@@ -1,4 +1,5 @@
 local lspconfig = require("lspconfig")
+local util = require("lspconfig/util")
 --local opts = { noremap=true, silent=true }
 
 local on_attach = function(client, bufnr)
@@ -46,6 +47,20 @@ lspconfig.sumneko_lua.setup {
 }
 
 
+lspconfig.gopls.setup {
+  on_attach = on_attach,
+  cmd = { "gopls", "serve" },
+  filetypes = { "go", "gomod" },
+  root_dir = util.root_pattern("go.work", "go.mod", ".git"),
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+    },
+  },
+}
 
 -- this is for diagnositcs signs on the line number column
 -- use this to beautify the plain E W signs to more fun ones

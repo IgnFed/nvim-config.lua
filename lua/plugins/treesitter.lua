@@ -1,7 +1,7 @@
 local treesitter = require("nvim-treesitter.configs")
 
 treesitter.setup {
-  ensure_installed = { "javascript", "lua", "typescript", "comment" },
+  ensure_installed = { "javascript", "lua", "typescript", "comment", "go", "gomod", "gowork" },
   sync_install = false,
   auto_install = true,
   highlight = {
