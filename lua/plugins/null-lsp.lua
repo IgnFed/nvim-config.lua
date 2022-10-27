@@ -8,6 +8,7 @@ null_ls.setup{
      formatting.prettier,
      formatting.eslint,
      formatting.stylua.with({extra_args = {"--fast"}}),
+     formatting.goimports,
     },
 }
 
