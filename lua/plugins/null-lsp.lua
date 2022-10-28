@@ -9,6 +9,7 @@ null_ls.setup{
      formatting.eslint,
      formatting.stylua.with({extra_args = {"--fast"}}),
      formatting.goimports,
+     formatting.sqlformat,
     },
 }
 
