@@ -31,7 +31,7 @@ o.ignorecase = true
 o.joinspaces = false
 o.lazyredraw = true
 o.list = true
-o.listchars = {eol = '↵'}
+o.listchars = {eol = '↵', tab="  "}
 o.mouse = "a"
 wo.number = true
 o.scrolloff = 7
