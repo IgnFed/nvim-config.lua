@@ -1,71 +1,22 @@
 local key = unpack(require("utils"))
 local saga = require("lspsaga")
-local shared_opts = { silent = true, remap = true }
+local shared_opts = {silent=true, remap=true}
 
 saga.init_lsp_saga({
   border_style = "rounded",
   saga_winblend = 15,
-  diagnostic_header = { "➤", "➤", "➤", "➤" },
+  diagnostic_header = {"➤", "➤", "➤", "➤"},
   code_action_icon = "💡",
   symbol_in_winbar = {
     in_custom = true
   },
 })
 
-local function get_file_name(include_path)
-  local file_name = require('lspsaga.symbolwinbar').get_file_name()
-  if vim.fn.bufname '%' == '' then return '' end
-  if include_path == false then return file_name end
-  -- Else if include path: ./lsp/saga.lua -> lsp > saga.lua
-  local sep = vim.loop.os_uname().sysname == 'Windows' and '\\' or '/'
-  local path_list = vim.split(string.gsub(vim.fn.expand '%:~:.:h', '%%', ''), sep)
-  local file_path = ''
-  for _, cur in ipairs(path_list) do
-    file_path = (cur == '.' or cur == '~') and '' or
-        file_path .. cur .. ' ' .. '%#LspSagaWinbarSep#>%*' .. ' %*'
-  end
-  return file_path .. file_name
-end
-
-local function config_winbar_or_statusline()
-  local exclude = {
-    ['terminal'] = true,
-    ['toggleterm'] = true,
-    ['prompt'] = true,
-    ['NvimTree'] = true,
-    ['help'] = true,
-  } -- Ignore float windows and exclude filetype
-  if vim.api.nvim_win_get_config(0).zindex or exclude[vim.bo.filetype] then
-    vim.wo.winbar = ''
-  else
-    local ok, lspsaga = pcall(require, 'lspsaga.symbolwinbar')
-    local sym
-    if ok then sym = lspsaga.get_symbol_node() end
-    local win_val = ''
-    win_val = get_file_name(true) -- set to true to include path
-    if sym ~= nil then win_val = win_val .. sym end
-    vim.wo.winbar = win_val
-    -- if work in statusline
-    vim.wo.stl = win_val
-  end
-end
-
-local events = { 'BufEnter', 'BufWinEnter', 'CursorMoved' }
-
-vim.api.nvim_create_autocmd(events, {
-  pattern = '*',
-  callback = function() config_winbar_or_statusline() end,
-})
-
-vim.api.nvim_create_autocmd('User', {
-  pattern = 'LspsagaUpdateSymbol',
-  callback = function() config_winbar_or_statusline() end,
-})
-
-key("n", "fd", "<cmd>Lspsaga lsp_finder<CR>", shared_opts)
-key({ "i", "n", "v" }, "<F2>", "<cmd>Lspsaga rename<CR>", shared_opts)
-key({ "n", "i" }, "<Leader><Leader>", "<cmd>Lspsaga hover_doc<CR>", { remap = true })
-key({ "i", "n" }, "<C-x>", "<cmd>LSoutlineToggle<CR>", shared_opts)
+key("n", "fd", "<cmd>Lspsaga lsp_finder<CR>",shared_opts)
+key({"i", "n", "v"}, "<F2>", "<cmd>Lspsaga rename<CR>", shared_opts)
+key({"n", "i"}, "<Leader><Leader>", "<cmd>Lspsaga hover_doc<CR>",{remap=true})
+key({"i", "n"}, "<C-x>", "<cmd>LSoutlineToggle<CR>", shared_opts)
 key("n", "<Leader>c", "<cmd>Lspsaga code_action<CR>", shared_opts)
 key("n", "<Leader>C", "<cmd>Lspsaga code_action<CR>", shared_opts)
 key("n", "gd", "<cmd>Lspsaga peek_definition<CR>", shared_opts)
+
