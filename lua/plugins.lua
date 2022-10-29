@@ -18,6 +18,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   use 'neovim/nvim-lspconfig'
   use 'williamboman/mason.nvim'
+  use "folke/neodev.nvim"
   use({
     "glepnir/lspsaga.nvim",
     branch = "main"

@@ -1,3 +1,4 @@
+require("plugins.neodev")
 require("plugins.mason")
 require("plugins.lspconfig")
 require("plugins.lspsaga")
