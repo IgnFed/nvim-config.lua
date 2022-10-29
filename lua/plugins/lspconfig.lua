@@ -10,7 +10,7 @@ local on_attach = function(client, bufnr)
 end
 
 -- this part is telling Neovim to use the lsp server
-local servers = { 'tsserver', "jsonls", "cssls", "html", "tailwindcss", "cssmodules_ls" }
+local servers = { 'tsserver', "jsonls", "cssls", "html", "tailwindcss", "cssmodules_ls", "golangci_lint_ls", "yamlls" }
 
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {
