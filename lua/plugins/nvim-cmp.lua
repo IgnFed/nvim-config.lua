@@ -2,13 +2,39 @@ local cmp = require("cmp")
 local cmp_nvim_lps = require("cmp_nvim_lsp")
 local lspconfig = require("lspconfig")
 local servers = require("plugins/lspconfig")
-local kind_icons = require("lua.kind_icons")
 
+local  kind_icons = {
+    Text = '  ',
+  Method = '  ',
+  Function = '  ',
+  Constructor = '  ',
+  Field = '  ',
+  Variable = '  ',
+  Class = '  ',
+  Interface = '  ',
+  Module = '  ',
+  Property = '  ',
+  Unit = '  ',
+  Value = '  ',
+  Enum = '  ',
+  Keyword = '  ',
+  Snippet = '  ',
+  Color = '  ',
+  File = '  ',
+  Reference = '  ',
+  Folder = '  ',
+  EnumMember = '  ',
+  Constant = '  ',
+  Struct = '  ',
+  Event = '  ',
+  Operator = '  ',
+  TypeParameter = '  ',
+}
 
 cmp.setup({
   formatting = {
     format = function(entry, vim_item)
-      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      vim_item.kind = string.format('%s', kind_icons[vim_item.kind]) -- This concatonates the icons with the name of the item kind
       -- Source
       vim_item.menu = ({
         buffer = "[Buffer]",

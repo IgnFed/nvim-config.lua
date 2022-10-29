@@ -1,20 +1,14 @@
 local lspconfig = require("lspconfig")
 local util = require("lspconfig/util")
+local utils = require("utils")
 --local opts = { noremap=true, silent=true }
-
-local on_attach = function(client, bufnr)
-  vim.cmd([[
-    command! Format execute 'lua vim.lsp.buf.formatting_sync({async=true})'
-  ]])
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-end
 
 -- this part is telling Neovim to use the lsp server
 local servers = { 'tsserver', "jsonls", "cssls", "html", "tailwindcss", "cssmodules_ls", "golangci_lint_ls", "yamlls" }
 
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {
-    on_attach = on_attach,
+    on_attach = utils.on_attach,
     flags = {
       debounce_text_changes = 150,
     },
@@ -22,33 +16,9 @@ for _, lsp in pairs(servers) do
   }
 end
 
-lspconfig.sumneko_lua.setup {
-  on_attach = on_attach,
-  flags = {
-    debounce_text_changes = 150,
-  },
-  detached = false,
-  settings = {
-    Lua = {
-      diagnostics = {
-        globals = { "vim" }
-      },
-      runtime = {
-        version = "LuaJIT"
-      },
-      workspace = {
-        library = {
-          [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-          [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true
-        }
-      }
-    }
-  }
-}
-
 
 lspconfig.gopls.setup {
-  on_attach = on_attach,
+  on_attach = utils.on_attach,
   cmd = { "gopls", "serve" },
   filetypes = { "go", "gomod" },
   root_dir = util.root_pattern("go.work", "go.mod", ".git"),
