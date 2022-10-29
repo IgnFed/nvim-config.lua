@@ -41,14 +41,14 @@ return require('packer').startup(function(use)
   use {'nvim-lualine/lualine.nvim', requires={'kyazdani42/nvim-web-devicons', opt = true}}
   use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'kyazdani42/nvim-web-devicons'}
   use "terrortylor/nvim-comment"
-  use({
-  "folke/noice.nvim",
-  event = "VimEnter",
-  requires = {
-   "MunifTanjim/nui.nvim",
-   "rcarriga/nvim-notify",
-    }
-  })
+  -- use({
+  -- "folke/noice.nvim",
+  -- event = "VimEnter",
+  -- requires = {
+  --  "MunifTanjim/nui.nvim",
+  --  "rcarriga/nvim-notify",
+  --   }
+  -- })
   use({
     "jose-elias-alvarez/null-ls.nvim",
     requires = { "nvim-lua/plenary.nvim" },
